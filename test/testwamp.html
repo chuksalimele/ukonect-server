@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="autobahn.js"></script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+        <script>
+            var conn = new ab.Session('ws://localhost:8081',
+                    function () {
+                        conn.subscribe('kittensCategory', function (topic, data) {
+                            // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+                            console.log('New article published to category "' + topic + '" : ' + data.title);
+                        });
+                    },
+                    function () {
+                        console.warn('WebSocket connection closed');
+                    },
+                    {'skipSubprotocolCheck': true}
+            );
+        </script>
+    </body>
+
+</html>
